@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="1.0" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            elementFormDefault="qualified">
+
+    <!-- Inclusions du schéma de base film.xsd -->
+    <xsd:include schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd"/>
+    <xsd:include schemaLocation="C:\Users\julien\Downloads\WebDonnee\q1\Personne.xsd"/>
+    
+    
+
+    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd">
+        <xsd:complexType name="FilmType">
+            <xsd:complexContent>
+                <xsd:extension base="FilmType">
+                    <xsd:attribute name="sous-titre" type="TitreType" use="optional"/>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:redefine>
+    
+    
+
+    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd">
+        <xsd:simpleType name="TitreType">
+            <xsd:restriction base="TitreType"> <!-- Référence au type redéfini lui-même -->
+                <xsd:minLength value="2"/>
+                <xsd:maxLength value="300"/>
+                <xsd:pattern value="([\p{N}\p{Lu}]|L')[\p{L}\p{N}',.]{0,14}(\s)?((\s|[-':\p{P}])[\p{L}\p{N}:.',\s]{1,15}){0,29}[?!]?"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:redefine>
+
+    
+
+    <!-- Redéfinition de ActeursType -->
+    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd">
+        <xsd:complexType name="ActeursType">
+            <xsd:complexContent>
+                <xsd:extension base="ActeursType">
+                    <xsd:sequence>
+                        <xsd:element ref="acteur" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:redefine>
+
+
+
+
+
+
+
+
+    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd">
+        <!-- Redéfinition de SynopsisType -->
+        <xsd:complexType name="SynopsisType" mixed="true">
+            <xsd:complexContent>
+                <xsd:extension base="SynopsisType"> <!-- Référence au type redéfini lui-même -->
+                    <xsd:sequence>
+                        <xsd:element ref="titre" minOccurs="0"/>
+                        <xsd:element ref="peintre" minOccurs="0"/>
+                        <xsd:element ref="personnage" minOccurs="0"/>
+                        <xsd:element ref="lieu" minOccurs="0"/>
+                        <xsd:element ref="nom" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element ref="prenom" minOccurs="0"/>
+                        <xsd:element ref="realisateur" minOccurs="0"/>
+                        <xsd:element ref="acteur" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:redefine>
+
+
+
+
+
+        <xsd:complexType name="PersonnageType">
+            <xsd:complexContent>
+                <xsd:restriction base="personType">
+                    <xsd:sequence>
+                        <xsd:element name="prenom" type="xsd:string" minOccurs="1" maxOccurs="4"/>
+                        <xsd:element name="nom" type="xsd:string" minOccurs="1" maxOccurs="2"/>
+                        <xsd:element name="surnom" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="fonction" type="xsd:string" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:restriction>
+            </xsd:complexContent>
+        </xsd:complexType>
+        
+        
+        
+    <xsd:complexType name="ActeurType">
+        <xsd:complexContent>
+            <xsd:extension base="personType"> <!-- Étend personType de Personne.xsd -->
+                <xsd:sequence>
+                    <xsd:element name="personnage" type="PersonnageType" maxOccurs="10"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    
+    <xsd:element name="peintre" type="personType" substitutionGroup="person"/>
+    <xsd:element name="personnage" type="PersonnageType" />
+</xsd:schema>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+    
+<xsd:annotation>    
+	<xsd:documentation>
+        caractérise le nom court d’un pays reconnu par l’ONU, c'est une chaîne de caractères (xsd :token ou xsd :normalizedString) : 
+        https://fr.wikipedia.org/wiki/Liste_des_%C3%89tats_membres_de_l%27Organisation_des_Nations_unies
+        A partir des noms des pays référencés ci-dessus, définissez les spécifications qui permettent de 
+        valider les noms de pays dans leur formulation courte.
+        </xsd:documentation> 
+</xsd:annotation>
+  <xsd:simpleType name="countryType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:pattern value="\p{Lu}\p{L}+([\-\s']\p{Lu}?\p{L}+)*"/> 
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  
+<xsd:annotation>    
+	<xsd:documentation>
+            cityType : caractérise le nom de ville avec la prise en compte des syntaxes décrites dans https://actu.fr/normandie/l-aigle_61214/quels-sont-les-noms-des-communes-les-plus-longs-et-les-plus-courts-dans-lorne_56096743.html
+            Attention le nom de ville le plus court est Y.
+            Par exemple Avec 168 lettres, Bangkok a le nom de ville le plus long au monde. "Krung Thep Mahanakhon 
+            Amon Rattanakosin Mahinthara Ayuthaya Mahadilok Phop Noppharat Ratchathani Burirom Udomratchaniwet Mahasathan 
+            Amon Piman Awatan Sathit Sakkathattiya Witsanukam Prasit”
+            Ou « Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu »
+            Autres exemples Saint Faust du bas, Saint Faust du haut, Paris,  Villefranche 
+            Définir les caractéristiques du type avant de le définir l’élément City et son type cityType.
+        </xsd:documentation> 
+</xsd:annotation>
+  <xsd:simpleType name="cityType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="168"/>
+      <xsd:pattern value="\p{Lu}[\p{Ll}]*([\-\s']\p{Lu}?[\p{Ll}]*)*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+
+<xsd:annotation>    
+	<xsd:documentation>
+        nameType : caractérise le nom d’une personne,  il dérivé de normalizedString et admet au plus 80 caractères et 
+        permet d’accepter les noms suivants :
+        Sartre, Lehane, Pourroy de L'Auberivière de Quinsonas-Oudinot de Reggio, Bertrand de Beauvoir.
+        </xsd:documentation> 
+</xsd:annotation>
+  <xsd:simpleType name="nameType">
+    <xsd:restriction base="xsd:normalizedString">
+      <xsd:maxLength value="80"/>
+       <xsd:pattern value="\p{Lu}[\p{Ll}]*([\-\s']\p{Lu}?[\p{Ll}]*)*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+<xsd:annotation>    
+	<xsd:documentation>
+        firstNameType : caractérise le prénom d’une personne. Il est dérivé de token qui admet au plus 200 caractères et permet d’accepter
+        les prénoms suivants :
+        Li Ming, Jean-Paul, Maélys, Napu AmoHalla Ona Ona Aneka Vehi Vehi Ona Hivea Nena Vava Keho Onka Kahe HeaLeka Ea Ona Ney Nana Nia 
+        Keko Oa Oga Vanao, Simone-Lucie-Ernestine-Marie.
+        </xsd:documentation> 
+</xsd:annotation>
+  <xsd:simpleType name="firstNameType">
+    <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="200"/>
+        <xsd:pattern value="\p{Lu}[\p{Ll}]*([\-\s']\p{Lu}?[\p{Ll}]*)*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+<xsd:annotation>    
+	<xsd:documentation>
+        codeType est un entier de 5 caractères allant de 01000 à 98899	
+        exemple : 01000 BOURG EN BRESSE,  98890 PAITA où 988 représentant le code de la Nouvelle Calédonie, 01 ceux de Ain ... 95 
+        Val d Oise, 971 celui de la Guadeloupe, 972 celui de la Martinique, 973 celui de la Guyane , 974 celui de la Reunion, 975 celui 
+        de St-Pierre-et-Miquelon 976 celui de Mayotte, 986 celui de Wallis et Futuna, 987 celui de la Polynésie Française et 988 celui de la 
+        Nouvelle-Caledonie.
+        Attention !!! il n’y a pas de code qui commence par 96XXX, ni de code qui commence par 977XX, 978XX et 979XX, ni de code qui commence 
+        par 981XX, 982XX, 983XX, 984XX et 985XX
+            
+        </xsd:documentation> 
+</xsd:annotation>
+  <xsd:simpleType name="codeType">
+    <xsd:restriction base="xsd:unsignedInt">
+        <xsd:minInclusive value="01000"/>
+        <xsd:maxInclusive value="98899"/>
+      <xsd:pattern value="[0-8][0-9]\d{3}|9[0-5]\d{3}|97[1-6]\d{2}|98[6-8]\d{2}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+
+<xsd:annotation>    
+	<xsd:documentation>
+        numberType est un type simple compris entre 1 et 9999.
+            integer 256
+            A voir le bon type
+        </xsd:documentation> 
+</xsd:annotation>
+  <xsd:simpleType name="numberType">
+    <xsd:restriction base="xsd:unsignedShort">
+      <xsd:minInclusive value="1"/>
+      <xsd:maxInclusive value="9999"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+<xsd:annotation>    
+	<xsd:documentation>
+        pathType dérive du type normalizedString qui commence par un des mots  rue ou avenue ou impasse ou boulevard suivi du nom de la voie qui est défini par au minimum un mot et au maximum 4 mots (et donc peut être similaire à l’expression régulière  (pattern) du type placeNameType). Par exemples : rue Lamartine, boulevard De Lattre De Tassigny, impasse de la foire, avenue Voltaire.
+        </xsd:documentation> 
+</xsd:annotation>
+
+  
+    <xsd:simpleType name="pathType">
+        <xsd:restriction base="xsd:normalizedString">
+            <xsd:maxLength value="200"/>
+            <xsd:pattern value="(rue|avenue|impasse|boulevard)(\s\p{L}+([\p{Ll}]{0,20}){1,4})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+  
+
+  
+  
+  
+<xsd:annotation>    
+	<xsd:documentation>
+        L’adresse d’une personne (addressType) est composée d’un numéro d’une voie, d’un code postal d’une ville et d’un pays. Définissez les éléments suivants :
+        Le code postal compris dans une adresse suit la nomenclature française.
+        </xsd:documentation> 
+</xsd:annotation>
+
+
+    <xsd:element name="firstName" type="firstNameType"/>
+    <xsd:element name="lastName" type="nameType"/>
+    <xsd:element name="number" type="numberType"/>
+    <xsd:element name="path" type="pathType"/>
+    <xsd:element name="code" type="codeType"/>
+    <xsd:element name="address" type="addressType"/>
+  <xsd:complexType name="addressType">
+    <xsd:sequence>
+      <xsd:element ref="number"/>
+      <xsd:element ref="path"/>
+      <xsd:element ref="code"/>
+      <xsd:group ref="locationGroup"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  
+  
+    <xsd:element name="city" type="cityType"/>
+    <xsd:element name="country" type="countryType"/>
+    <xsd:group name="locationGroup">
+        <xsd:sequence>
+            <xsd:element ref="city"/>
+            <xsd:element ref="country"/>
+        </xsd:sequence>
+    </xsd:group>
+
+      
+
+
+  <xsd:element name="test">
+    <xsd:complexType>
+      <xsd:sequence>
+          <xsd:any minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+</xsd:schema>
+
+
+

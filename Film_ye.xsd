@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+
+    <!-- Redéfinition du schéma personne.xsd -->
+    <xsd:redefine schemaLocation="personne.xsd">
+        <!-- Redéfinition du groupe PersonGroup pour exclure l’élément adresse -->
+        <xsd:group name="PersonGroup">
+            <xsd:sequence>
+                <!-- L'élément 'adresse' est exclu -->
+                <xsd:element ref="prenom" minOccurs="1" maxOccurs="4"/>
+                <xsd:element ref="nom" minOccurs="1" maxOccurs="3"/>
+            </xsd:sequence>
+        </xsd:group>
+    </xsd:redefine>
+
+    <xsd:include schemaLocation="../TD/util.xsd" />
+
+    <!-- TitreType : chaîne de caractères normalisés entre 2 et 300 caractères -->
+    <xsd:simpleType name="TitreType">
+        <xsd:restriction base="xsd:normalizedString">
+            <xsd:minLength value="2"/>
+            <xsd:maxLength value="300"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- SortieType avec jour, mois, an et l'attribut pays -->
+    <xsd:complexType name="SortieType">
+        <!-- L’ordre des éléments de sortie n’est pas précisé -->
+        <xsd:all>
+            <xsd:element ref="jour"/>
+            <xsd:element ref="mois"/>
+            <xsd:element ref="an"/>
+        </xsd:all>
+        <xsd:attribute ref="pays"/>
+    </xsd:complexType>
+
+    <xsd:element name="jour" type="xsd:gDay"/>
+    <xsd:element name="mois" type="xsd:gMonth"/>
+    <xsd:element name="an" type="xsd:gYear"/>
+    <!-- The country uses the types defined in Util -->
+    <xsd:attribute name="pays" type="countryType"/>
+
+    <!-- Liste des acteurs -->
+    <!-- Les acteurs sont de type personType et se subtituent à l'élément personne-->
+    <xsd:element name="acteur" substitutionGroup="personne" />
+    <xsd:complexType name="ActeursType">
+        <xsd:sequence>
+            <xsd:element ref="acteur" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- GenreType avec des valeurs spécifiques -->
+    <xsd:annotation>
+        <xsd:documentation>
+            GenreType est basé sur BaseGenreType mais permet d’ajouter une information
+            supplémentaire sous forme d’attribut optionnel (autre-genre).
+
+            En raison de la contrainte selon laquelle un simpleContent avec une restriction
+            ne peut pas contenir d’attributs supplémentaires, nous avons adopté une structure
+            imbriquée.
+
+            Ainsi, GenreType étend BaseGenreType en utilisant simpleContent, ce qui permet
+            d’ajouter l’attribut autre-genre tout en conservant la restriction des valeurs
+            définies dans BaseGenreType. Cela garantit une validation stricte du genre principal
+            tout en offrant une flexibilité pour spécifier une catégorie secondaire.
+        </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType name="GenreType">
+        <xsd:simpleContent>
+            <xsd:extension base="BaseGenreType">
+                <xsd:attribute ref="autre-genre"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="BaseGenreType">
+        <xsd:restriction base="xsd:normalizedString">
+            <xsd:enumeration value="animation"/>
+            <xsd:enumeration value="film biographique"/>
+            <xsd:enumeration value="comédie"/>
+            <xsd:enumeration value="comedie"/> <!-- pour le fichier de test -->
+            <xsd:enumeration value="documentaire"/>
+            <xsd:enumeration value="drame"/>
+            <xsd:enumeration value="science-fiction"/>
+            <xsd:enumeration value="guerre"/>
+            <xsd:enumeration value="historique"/>
+            <xsd:enumeration value="policier"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Attribut autre-genre -->
+    <xsd:simpleType name="AttributeGenreDomain">
+        <xsd:restriction base="xsd:NMTOKEN">
+            <xsd:enumeration value="sport"/>
+            <xsd:enumeration value="politique"/>
+            <xsd:enumeration value="musicale"/>
+            <xsd:enumeration value="horreur"/>
+            <xsd:enumeration value="aventure"/>
+            <xsd:enumeration value="fantastique"/>
+            <xsd:enumeration value="dramatique"/>
+            <xsd:enumeration value="thriller"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:attribute name="autre-genre" type="AttributeGenreDomain" />
+
+    <!-- TempsType avec groupe d'attributs tempsGroup -->
+    <xsd:annotation>
+        <xsd:documentation>
+            La durée du film est représentée par l’élément temps de type TempsType et est exprimée sous forme de deux
+            attributs heure de type HeureType et minutes de type MinuteType,
+            un groupe d’attributs tempsGroup est défini et regroupe les deux attributs heure et minutes
+        </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:complexType name="TempsType" >
+        <xsd:attributeGroup ref="tempsGroup"/>
+    </xsd:complexType>
+
+    <xsd:attributeGroup name="tempsGroup">
+        <xsd:attribute ref="heure" use="required"/>
+        <xsd:attribute ref="minutes" use="required"/>
+    </xsd:attributeGroup>
+
+    <!-- HeureType : valeurs entre 0 et 30 -->
+    <xsd:attribute name="heure" type="HeureType"/>
+    <xsd:simpleType name="HeureType">
+        <xsd:restriction base="xsd:unsignedByte">
+            <!-- It must be a two-digit number, the range is "00" to "30" -->
+            <xsd:pattern value="[0-2]\p{Nd}|30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- MinuteType : valeurs entre 0 et 60 -->
+    <xsd:attribute name="minutes" type="MinuteType"/>
+    <xsd:simpleType name="MinuteType">
+        <xsd:restriction base="xsd:unsignedByte">
+            <!-- It must be a two-digit number, the range is "00" to "60" -->
+            <xsd:pattern value="[0-5]\p{Nd}|60"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="temps" type="TempsType" />
+
+    <!-- SynopsisType : contenu mixte utilisant l'élément personne -->
+    <xsd:element name="lieu" substitutionGroup="ville" />
+    <xsd:complexType name="SynopsisType" mixed="true">
+        <xsd:sequence>
+            <xsd:group ref="PersonGroup"/>
+            <xsd:element ref="ville" minOccurs="0" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="titre" type="TitreType"/>
+    <xsd:element name="sortie" type="SortieType"/>
+    <xsd:element name="realisateur" type="personType"/>
+    <xsd:element name="acteurs" type="ActeursType"/>
+    <xsd:element name="genre" type="GenreType"/>
+    <xsd:element name="durée" substitutionGroup="temps"/>
+    <xsd:element name="synopsis" type="SynopsisType"/>
+
+    <!-- Définition de l'élément film -->
+    <xsd:element name="film" type="FilmType"/>
+    <xsd:complexType name="FilmType">
+        <xsd:sequence>
+            <!-- 1 à 2 titres -->
+            <xsd:element ref="titre" maxOccurs="2"/>
+            <!-- 1 à 2 sorties -->
+            <xsd:element ref="sortie" maxOccurs="2"/>
+            <!-- 1 à 10 réalisateurs -->
+            <xsd:element ref="realisateur" maxOccurs="10"/>
+            <!-- Liste des acteurs -->
+            <xsd:element ref="acteurs"/>
+            <!-- 1 élément genre -->
+            <xsd:element ref="genre" />
+            <!-- Durée du film -->
+            <xsd:element ref="temps" />
+            <!-- Synopsis -->
+            <xsd:element ref="synopsis"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

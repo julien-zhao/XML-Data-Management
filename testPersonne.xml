@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation= "Personne.xsd">
+<personne>
+    <prenom>Cate</prenom>
+    <prenom>Catherine</prenom>
+    <prenom>Elise</prenom>
+    <nom>Blanchett</nom>
+    <naissance> née le 
+        <date>1969-05-14</date> à
+        <ville>Melbourne</ville>
+    </naissance>
+</personne>
+<personne>
+    <prenom>Jane</prenom>
+    <nom>Austen</nom>
+    <naissance>née le <date>1775-12-16</date> à 
+             <ville>Steventon</ville>, 
+             dans le Hampshire en <country>Angleterre</country> 
+    </naissance>
+    <mort>
+        <date>1817-07-18</date>
+        <ville>Winchester</ville>
+    </mort>
+</personne>
+</test>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation= "CNCFilm.xsd">
+    <titre>Creed 3</titre>
+    <titre>Sueurs froides</titre>
+    <titre>L'Atalante</titre>
+    <titre>Citizen Kane</titre>
+    <titre>À bout de souffle</titre>
+    <titre>Les 7 Samouraïs</titre>
+    <titre>Chantons sous la pluie</titre>
+    <titre>In the Mood for Love</titre>
+    <titre>Rashōmon</titre>
+    <titre>Le Parrain, 2e partie</titre>
+    <titre>Jeanne Dielman 23, quai du Commerce, 1080 Bruxelles</titre>
+    <titre>M le maudit</titre>
+    <titre>Les Contes de la lune vague après la pluie</titre>
+    <titre>2001 : L'Odyssée de l'espace</titre>
+    <titre>Certains l'aiment chaud !</titre>
+    <titre>Rome, ville ouverte</titre>
+    <titre>L'Impératrice rouge</titre>
+    <titre>Les Vacances de M. Hulot</titre>
+    <titre>El</titre>
+    <titre>America, America</titre>
+    
+    <sortie pays="France">
+        <jour>---01</jour>
+        <an>2023</an>
+        <mois>--03--</mois>
+    </sortie>
+</test>

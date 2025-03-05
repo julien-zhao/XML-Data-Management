@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personne  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation= "Personne.xsd">
+    <prenom>Cate</prenom>
+    <prenom>Catherine</prenom>
+    <prenom>Elise</prenom>
+    <nom>Blanchett</nom>
+    <naissance> née le 
+        <date>1969-05-14</date> à
+        <ville>Melbourne</ville>
+    </naissance>
+</personne>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation= "q1/util.xsd">
+    <country>Émirat islamique d'Afghanistan</country>
+    <country>Afrique du Sud</country>
+    <country>Antigua-et-Barbuda</country>
+    <country>Arabie saoudite</country>
+    <country>Azerbaïdjan</country>
+    <country>Bosnie-Herzégovine</country>
+    <country>République centrafricaine</country>
+    <country>République démocratique du Congo</country>
+    <country>Sao Tomé-et-Principe</country>
+    <country>Papouasie-Nouvelle-Guinée</country>
+    <country>Saint-Vincent-et-les-Grenadines</country>
+    <country>États-Unis</country>
+    <country>États fédérés de Micronésie</country>
+    <country>Burkina Faso</country>
+    <country>Togo</country>
+    <country>ToGo</country>
+    <country>États-unis</country>
+    <code>96321</code>
+    <code>97100</code>
+    <code>78900</code>
+    <code>0099</code>
+    <!-- A completer par les étudiants pour valider les autres types -->
+</test>

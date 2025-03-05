@@ -1,0 +1,71 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://example.com/cinema2"
+            targetNamespace="http://example.com/cinema2"
+            elementFormDefault="qualified">
+    
+    <!-- 引入 cinema.xsd -->
+    <xsd:include schemaLocation="..\q4\cinema.xsd"/>
+
+    <!-- 定义 CinemaType -->
+    <xsd:complexType name="CinemaType">
+        <xsd:sequence>
+            <xsd:element name="film" type="FilmType" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element name="salle" type="SalleType" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element name="seance" type="SeanceType" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+
+        <!-- 定义 film 的主键（key） -->
+        <xsd:key name="FilmKey">
+            <xsd:selector xpath="film"/>
+            <xsd:field xpath="titre"/>
+        </xsd:key>
+
+        <!-- 定义 salle 的唯一约束（SalleNumUnique） -->
+        <xsd:unique name="SalleNumUnique">
+            <xsd:selector xpath="salle"/>
+            <xsd:field xpath="@num"/>
+        </xsd:unique>
+
+        <!-- 定义 seance 的外键（SeanceFilmRef） -->
+        <xsd:keyref name="SeanceFilmRef" refer="FilmKey">
+            <xsd:selector xpath="seance"/>
+            <xsd:field xpath="film"/>
+        </xsd:keyref>
+
+        <!-- 定义 seance 的唯一约束（UniqueSeance） -->
+        <xsd:unique name="UniqueSeance">
+            <xsd:selector xpath="seance"/>
+            <xsd:field xpath="@horaire"/>
+            <xsd:field xpath="film"/>
+            <xsd:field xpath="sortie/an"/>
+        </xsd:unique>
+
+    </xsd:complexType>
+
+    <!-- 定义 salle 复杂类型 -->
+    <xsd:complexType name="SalleType">
+        <xsd:sequence>
+            <xsd:element name="capacite" type="xsd:positiveInteger"/>
+        </xsd:sequence>
+        <xsd:attribute name="num" type="xsd:positiveInteger" use="required"/>
+    </xsd:complexType>
+
+    <!-- 定义 seance 复杂类型 -->
+    <xsd:complexType name="SeanceType">
+        <xsd:sequence>
+            <xsd:element name="film" type="xsd:string"/>
+            <xsd:element name="sortie">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="an" type="xsd:gYear"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="horaire" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <!-- 定义 cinema2 元素 -->
+    <xsd:element name="cinema2" type="CinemaType"/>
+
+</xsd:schema>

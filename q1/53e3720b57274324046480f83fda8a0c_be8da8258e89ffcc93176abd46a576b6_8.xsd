@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+    <!-- Redefinition de l'util.xsd -->
+    <xsd:redefine schemaLocation="../TD/util.xsd">
+        <!-- country optional -->
+        <xsd:group name="locationGroup">
+            <xsd:sequence>
+                <xsd:element ref="city"/>
+                <xsd:element ref="country" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:group>
+    </xsd:redefine>
+
+    <xsd:element name="person" type="personType"/>
+    <xsd:complexType name="personType">
+        <xsd:sequence>
+            <xsd:group ref="PersonGroup"/>
+            <xsd:element ref="birth" minOccurs="0"/>
+            <xsd:element ref="dead" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:group name="PersonGroup">
+        <xsd:sequence>
+            <xsd:element ref="firstName" minOccurs="1" maxOccurs="4"/>
+            <xsd:element ref="lastName" minOccurs="1" maxOccurs="3"/>
+            <xsd:element ref="address" minOccurs="0" maxOccurs="3"/>
+        </xsd:sequence>
+    </xsd:group>
+
+    <xsd:element name="date">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:date">
+                <xsd:minInclusive value="1000-01-01"/>
+                <xsd:maxInclusive value="2025-12-31"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:element name="birth" type="dateLocation"/>
+    <xsd:element name="dead" type="dateLocation"/>
+    <xsd:complexType name="dateLocation" mixed="true">
+        <xsd:sequence>
+            <xsd:element ref="date" minOccurs="0"/>
+            <xsd:group ref="locationGroup" minOccurs="0"/>
+            <xsd:element ref="place" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="place" type="placeType"/>
+    <xsd:complexType name="placeType">
+        <xsd:sequence>
+            <xsd:group ref="locationGroup"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Traductions -->
+    <xsd:element name="nom" substitutionGroup="lastName"/>
+    <xsd:element name="prenom" substitutionGroup="firstName"/>
+    <xsd:element name="adresse" substitutionGroup="address"/>
+    <xsd:element name="ville" substitutionGroup="city"/>
+    <xsd:element name="pays" substitutionGroup="country"/>
+    <xsd:element name="naissance" substitutionGroup="birth"/>
+    <xsd:element name="mort" substitutionGroup="dead"/>
+    <xsd:element name="personne" substitutionGroup="person"/>
+    <xsd:element name="lieu" substitutionGroup="place"/>
+</xsd:schema>
