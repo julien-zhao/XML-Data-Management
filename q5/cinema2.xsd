@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns="http://example.com/cinema2"
             targetNamespace="http://example.com/cinema2"
             elementFormDefault="qualified">
     
-    <!-- 引入 cinema.xsd -->
+    <!-- 寮曞叆 cinema.xsd -->
     <xsd:include schemaLocation="..\q4\cinema.xsd"/>
 
-    <!-- 定义 CinemaType -->
+    <!-- 瀹氫箟 CinemaType -->
     <xsd:complexType name="CinemaType">
         <xsd:sequence>
             <xsd:element name="film" type="FilmType" minOccurs="1" maxOccurs="unbounded"/>
@@ -14,25 +15,25 @@
             <xsd:element name="seance" type="SeanceType" minOccurs="1" maxOccurs="unbounded"/>
         </xsd:sequence>
 
-        <!-- 定义 film 的主键（key） -->
+        <!-- 瀹氫箟 film 鐨勪富閿紙key锛� -->
         <xsd:key name="FilmKey">
             <xsd:selector xpath="film"/>
             <xsd:field xpath="titre"/>
         </xsd:key>
 
-        <!-- 定义 salle 的唯一约束（SalleNumUnique） -->
+        <!-- 瀹氫箟 salle 鐨勫敮涓�绾︽潫锛圫alleNumUnique锛� -->
         <xsd:unique name="SalleNumUnique">
             <xsd:selector xpath="salle"/>
             <xsd:field xpath="@num"/>
         </xsd:unique>
 
-        <!-- 定义 seance 的外键（SeanceFilmRef） -->
+        <!-- 瀹氫箟 seance 鐨勫閿紙SeanceFilmRef锛� -->
         <xsd:keyref name="SeanceFilmRef" refer="FilmKey">
             <xsd:selector xpath="seance"/>
             <xsd:field xpath="film"/>
         </xsd:keyref>
 
-        <!-- 定义 seance 的唯一约束（UniqueSeance） -->
+        <!-- 瀹氫箟 seance 鐨勫敮涓�绾︽潫锛圲niqueSeance锛� -->
         <xsd:unique name="UniqueSeance">
             <xsd:selector xpath="seance"/>
             <xsd:field xpath="@horaire"/>
@@ -42,7 +43,7 @@
 
     </xsd:complexType>
 
-    <!-- 定义 salle 复杂类型 -->
+    <!-- 瀹氫箟 salle 澶嶆潅绫诲瀷 -->
     <xsd:complexType name="SalleType">
         <xsd:sequence>
             <xsd:element name="capacite" type="xsd:positiveInteger"/>
@@ -50,7 +51,7 @@
         <xsd:attribute name="num" type="xsd:positiveInteger" use="required"/>
     </xsd:complexType>
 
-    <!-- 定义 seance 复杂类型 -->
+    <!-- 瀹氫箟 seance 澶嶆潅绫诲瀷 -->
     <xsd:complexType name="SeanceType">
         <xsd:sequence>
             <xsd:element name="film" type="xsd:string"/>
@@ -65,7 +66,7 @@
         <xsd:attribute name="horaire" type="xsd:string" use="required"/>
     </xsd:complexType>
 
-    <!-- 定义 cinema2 元素 -->
+    <!-- 瀹氫箟 cinema2 鍏冪礌 -->
     <xsd:element name="cinema2" type="CinemaType"/>
 
 </xsd:schema>
