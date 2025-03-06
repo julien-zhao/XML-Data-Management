@@ -4,12 +4,12 @@
             elementFormDefault="qualified">
 
     <!-- Inclusions du schéma de base film.xsd -->
-    <xsd:include schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd"/>
-    <xsd:include schemaLocation="C:\Users\julien\Downloads\WebDonnee\q1\Personne.xsd"/>
+    <xsd:include schemaLocation="..\q2\film.xsd"/>
+    <xsd:include schemaLocation="..\q1\Personne.xsd"/>
     
     
 
-    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd">
+    <xsd:redefine schemaLocation="..\q2\film.xsd">
         <xsd:complexType name="FilmType">
             <xsd:complexContent>
                 <xsd:extension base="FilmType">
@@ -21,7 +21,7 @@
     
     
 
-    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd">
+    <xsd:redefine schemaLocation="..\q2\film.xsd">
         <xsd:simpleType name="TitreType">
             <xsd:restriction base="TitreType"> <!-- Référence au type redéfini lui-même -->
                 <xsd:minLength value="2"/>
@@ -34,7 +34,7 @@
     
 
     <!-- Redéfinition de ActeursType -->
-    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd">
+    <xsd:redefine schemaLocation="..\q2\film.xsd">
         <xsd:complexType name="ActeursType">
             <xsd:complexContent>
                 <xsd:extension base="ActeursType">
@@ -53,7 +53,7 @@
 
 
 
-    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q2\film.xsd">
+    <xsd:redefine schemaLocation="..\q2\film.xsd">
         <!-- Redéfinition de SynopsisType -->
         <xsd:complexType name="SynopsisType" mixed="true">
             <xsd:complexContent>
