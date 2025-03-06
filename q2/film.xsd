@@ -2,10 +2,10 @@
 <xsd:schema version="1.0" 
             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
             elementFormDefault="qualified">
-            <xsd:include schemaLocation="C:\Users\julien\Downloads\WebDonnee\q1\Personne.xsd"/>
+            <xsd:include schemaLocation="..\q1\Personne.xsd"/>
     
     <!-- Redéfinition du groupe personGroup -->
-    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q1\Personne.xsd">
+    <xsd:redefine schemaLocation="..\q1\Personne.xsd">
         <xsd:group name="PersonGroup">
             <xsd:sequence>
                 <xsd:element name="prenom" minOccurs="1" maxOccurs="4"/>
