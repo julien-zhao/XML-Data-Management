@@ -1,49 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            xmlns="http://example.com/cinema2"
-            targetNamespace="http://example.com/cinema2"
             elementFormDefault="qualified">
     
-    <!-- 寮曞叆 cinema.xsd -->
+    <!-- Inclusion du fichier cinema.xsd -->
     <xsd:include schemaLocation="..\q4\cinema.xsd"/>
 
-    <!-- 瀹氫箟 CinemaType -->
+    <!-- Définition de CinemaType -->
     <xsd:complexType name="CinemaType">
         <xsd:sequence>
             <xsd:element name="film" type="FilmType" minOccurs="1" maxOccurs="unbounded"/>
             <xsd:element name="salle" type="SalleType" minOccurs="1" maxOccurs="unbounded"/>
             <xsd:element name="seance" type="SeanceType" minOccurs="1" maxOccurs="unbounded"/>
         </xsd:sequence>
-
-        <!-- 瀹氫箟 film 鐨勪富閿紙key锛� -->
-        <xsd:key name="FilmKey">
-            <xsd:selector xpath="film"/>
-            <xsd:field xpath="titre"/>
-        </xsd:key>
-
-        <!-- 瀹氫箟 salle 鐨勫敮涓�绾︽潫锛圫alleNumUnique锛� -->
-        <xsd:unique name="SalleNumUnique">
-            <xsd:selector xpath="salle"/>
-            <xsd:field xpath="@num"/>
-        </xsd:unique>
-
-        <!-- 瀹氫箟 seance 鐨勫閿紙SeanceFilmRef锛� -->
-        <xsd:keyref name="SeanceFilmRef" refer="FilmKey">
-            <xsd:selector xpath="seance"/>
-            <xsd:field xpath="film"/>
-        </xsd:keyref>
-
-        <!-- 瀹氫箟 seance 鐨勫敮涓�绾︽潫锛圲niqueSeance锛� -->
-        <xsd:unique name="UniqueSeance">
-            <xsd:selector xpath="seance"/>
-            <xsd:field xpath="@horaire"/>
-            <xsd:field xpath="film"/>
-            <xsd:field xpath="sortie/an"/>
-        </xsd:unique>
-
     </xsd:complexType>
 
-    <!-- 瀹氫箟 salle 澶嶆潅绫诲瀷 -->
+    <!-- Définition de SalleType -->
     <xsd:complexType name="SalleType">
         <xsd:sequence>
             <xsd:element name="capacite" type="xsd:positiveInteger"/>
@@ -51,7 +22,7 @@
         <xsd:attribute name="num" type="xsd:positiveInteger" use="required"/>
     </xsd:complexType>
 
-    <!-- 瀹氫箟 seance 澶嶆潅绫诲瀷 -->
+    <!-- Définition de SeanceType -->
     <xsd:complexType name="SeanceType">
         <xsd:sequence>
             <xsd:element name="film" type="xsd:string"/>
@@ -66,7 +37,33 @@
         <xsd:attribute name="horaire" type="xsd:string" use="required"/>
     </xsd:complexType>
 
-    <!-- 瀹氫箟 cinema2 鍏冪礌 -->
-    <xsd:element name="cinema2" type="CinemaType"/>
+    <!-- Définition de l'élément cinéma -->
+    <xsd:element name="cinema2" type="CinemaType">
+        <!-- Définition de la clé pour les films -->
+        <xsd:key name="FilmKey">
+            <xsd:selector xpath="film"/>
+            <xsd:field xpath="titre"/>
+        </xsd:key>
+
+        <!-- Contrainte d'unicité sur le numéro des salles -->
+        <xsd:unique name="SalleNumUnique">
+            <xsd:selector xpath="salle"/>
+            <xsd:field xpath="@num"/>
+        </xsd:unique>
+
+        <!-- Référence clé pour les séances -->
+        <xsd:keyref name="SeanceFilmRef" refer="FilmKey">
+            <xsd:selector xpath="seance"/>
+            <xsd:field xpath="film"/>
+        </xsd:keyref>
+
+        <!-- Contrainte d'unicité sur les séances -->
+        <xsd:unique name="UniqueSeance">
+            <xsd:selector xpath="seance"/>
+            <xsd:field xpath="@horaire"/>
+            <xsd:field xpath="film"/>
+            <xsd:field xpath="sortie/an"/>
+        </xsd:unique>
+    </xsd:element>
 
 </xsd:schema>
