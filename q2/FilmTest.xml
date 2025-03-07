@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation= "film2.xsd">
+    xsi:noNamespaceSchemaLocation= "film.xsd">
      <film>
 <titre>Birdman</titre>
 <!-- <image source="BIRDMAN" width="200" height="200"/> -->

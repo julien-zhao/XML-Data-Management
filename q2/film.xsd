@@ -3,17 +3,19 @@
             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
             elementFormDefault="qualified">
             <xsd:include schemaLocation="..\q1\Personne.xsd"/>
+           
+
     
     <!-- Redéfinition du groupe personGroup -->
     <xsd:redefine schemaLocation="..\q1\Personne.xsd">
         <xsd:group name="PersonGroup">
             <xsd:sequence>
-                <xsd:element name="prenom" minOccurs="1" maxOccurs="4"/>
-                <xsd:element name="nom" minOccurs="1" maxOccurs="3"/>
+                <xsd:element ref="prenom" minOccurs="1" maxOccurs="4"/>
+                <xsd:element ref="nom" minOccurs="1" maxOccurs="3"/>
             </xsd:sequence>
         </xsd:group>
     </xsd:redefine>
-    
+
     <!-- Définition de TitreType -->
     <xsd:simpleType name="TitreType">
         <xsd:restriction base="xsd:normalizedString">

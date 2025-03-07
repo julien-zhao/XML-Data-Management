@@ -117,7 +117,8 @@
     <xsd:simpleType name="pathType">
         <xsd:restriction base="xsd:normalizedString">
             <xsd:maxLength value="200"/>
-            <xsd:pattern value="(rue|avenue|impasse|boulevard)(\s\p{L}+([\p{Ll}]{0,20}){1,4})"/>
+            <xsd:pattern value="(rue|avenue|impasse|boulevard)\s([\p{L}-]+\s?){1,4}"/>
+                                
         </xsd:restriction>
     </xsd:simpleType>
   
@@ -131,6 +132,19 @@
         Le code postal compris dans une adresse suit la nomenclature française.
         </xsd:documentation> 
 </xsd:annotation>
+
+
+
+  
+  
+    <xsd:element name="city" type="cityType"/>
+    <xsd:element name="country" type="countryType"/>
+    <xsd:group name="locationGroup">
+        <xsd:sequence>
+            <xsd:element ref="city"/>
+            <xsd:element ref="country"/>
+        </xsd:sequence>
+    </xsd:group>
 
 
     <xsd:element name="firstName" type="firstNameType"/>
@@ -148,18 +162,6 @@
     </xsd:sequence>
   </xsd:complexType>
   
-  
-  
-    <xsd:element name="city" type="cityType"/>
-    <xsd:element name="country" type="countryType"/>
-    <xsd:group name="locationGroup">
-        <xsd:sequence>
-            <xsd:element ref="city"/>
-            <xsd:element ref="country"/>
-        </xsd:sequence>
-    </xsd:group>
-
-      
 
 
   <xsd:element name="test">

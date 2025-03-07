@@ -3,7 +3,7 @@
             elementFormDefault="qualified">
 
     <!-- Redéfinition du schéma personne.xsd -->
-    <xsd:redefine schemaLocation="C:\Users\julien\Downloads\WebDonnee\q1\personne2.xsd">
+    <xsd:redefine schemaLocation="..\q1\personne2.xsd">
         <!-- Redéfinition du groupe PersonGroup pour exclure l’élément adresse -->
         <xsd:group name="PersonGroup">
             <xsd:sequence>
@@ -14,7 +14,7 @@
         </xsd:group>
     </xsd:redefine>
 
-    <xsd:include schemaLocation="C:\Users\julien\Downloads\WebDonnee\q1\personne2.xsd" />
+    <xsd:include schemaLocation="..\q1\personne2.xsd" />
 
     <!-- TitreType : chaîne de caractères normalisés entre 2 et 300 caractères -->
     <xsd:simpleType name="TitreType">

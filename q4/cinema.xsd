@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             elementFormDefault="qualified">
-
-  <!-- 包含CNCFilm.xsd -->
   <xsd:include schemaLocation="..\q3\CNCFilm.xsd"/>
-  <xsd:include schemaLocation="..\q1\util.xsd"/>
 
-  <!-- ================= 新类型定义 ================= -->
-  <!-- 影厅编号类型 (1-40) -->
+
   <xsd:simpleType name="NumType">
     <xsd:restriction base="xsd:unsignedByte">
       <xsd:minInclusive value="1"/>
@@ -15,7 +11,6 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-  <!-- 座位数类型 (25-1500) -->
   <xsd:simpleType name="PlaceType">
     <xsd:restriction base="xsd:unsignedShort">
       <xsd:minInclusive value="25"/>
@@ -23,13 +18,11 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-  <!-- 时间列表类型 -->
   <xsd:simpleType name="HoraireType">
     <xsd:list itemType="xsd:time"/>
   </xsd:simpleType>
 
-  <!-- ================= 复用film.xsd组件 ================= -->
-  <!-- 备注类型 (直接复用film.xsd中的枚举) -->
+
   <xsd:simpleType name="RemarqueType">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="Réservation conseillée"/>
@@ -40,27 +33,26 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-  <!-- ================= 核心结构定义 ================= -->
-  <!-- 场次类型 -->
+
   <xsd:element name="remarque" type="RemarqueType"/>
   <xsd:attribute name="horaire" type="HoraireType"/>
   <xsd:complexType name="SeanceType">
     <xsd:sequence>
-      <xsd:element ref="film"/>  <!-- 复用CNCFilm.xsd中的film元素 -->
+      <xsd:element ref="film"/> 
       <xsd:element ref="remarque" minOccurs="0" maxOccurs="2"/>
     </xsd:sequence>
-    <xsd:attribute name="horaire" use="required"/>
+    <xsd:attribute ref="horaire" use="required"/>
   </xsd:complexType>
 
-  <!-- 影厅属性组 -->
+
   <xsd:attribute name="num" type="NumType"/>
   <xsd:attribute name="place" type="PlaceType"/>
   <xsd:attributeGroup name="SalleGroup">
-    <xsd:attribute name="num" use="required"/>
-    <xsd:attribute name="place" use="required"/>
+    <xsd:attribute ref="num" use="required"/>
+    <xsd:attribute ref="place" use="required"/>
   </xsd:attributeGroup>
 
-  <!-- 影厅类型 -->
+
   <xsd:element name="seance" type="SeanceType"/>
   <xsd:complexType name="SalleType">
     <xsd:sequence>
@@ -69,18 +61,16 @@
     <xsd:attributeGroup ref="SalleGroup"/>
   </xsd:complexType>
 
-  <!-- 电影院类型 -->
   <xsd:element name="salle" type="SalleType"/>
   <xsd:complexType name="CinemaType">
     <xsd:sequence>
       <xsd:element name="nom" type="xsd:string"/>
-      <xsd:element ref="adresse"/>  <!-- 复用util.xsd中的地址类型 -->
+      <xsd:element ref="adresse"/>  
       <xsd:element ref="salle" minOccurs="1" maxOccurs="40"/>
-      <xsd:element ref="film" minOccurs="1" maxOccurs="200"/>  <!-- 复用CNCFilm.xsd中的film -->
+      <xsd:element ref="film" minOccurs="1" maxOccurs="200"/>  
     </xsd:sequence>
   </xsd:complexType>
 
-  <!-- 根元素 -->
   <xsd:element name="cinema" type="CinemaType"/>
 
 </xsd:schema>

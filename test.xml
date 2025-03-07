@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="q1/util.xsd">
+    
+<country>Papouasie-Nouvelle-Guinée</country>
+  <city>Paris</city>
+  <lastName>Sartre</lastName>
+  <firstName>Li Ming</firstName>
+  <code>94000</code>
+  <number>12</number>
+  <path>rue de Rivoli</path>
+  <address>
+    <number>15</number>
+    <path>impasse de la foire</path>
+    <code>75008</code>
+    <city>Paris</city>
+    <country>France</country>
+  </address>
+</test>

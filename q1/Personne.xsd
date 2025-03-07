@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             elementFormDefault="qualified">
-
+            <xsd:include schemaLocation="util.xsd"/>
     <!-- Redefinition de l'util.xsd -->
 
     <xsd:redefine schemaLocation="util.xsd">
-        <!-- country optional -->
         <xsd:group name="locationGroup">
             <xsd:sequence>
                 <xsd:element ref="city"/>
@@ -13,7 +12,6 @@
             </xsd:sequence>
         </xsd:group>
     </xsd:redefine>
-    
     
 
     <xsd:element name="person" type="personType"/>
@@ -63,6 +61,8 @@
     <xsd:element name="nom" substitutionGroup="lastName"/>
     <xsd:element name="prenom" substitutionGroup="firstName"/>
     <xsd:element name="adresse" substitutionGroup="address"/>
+    <xsd:element name="numero" substitutionGroup="number"/>
+    <xsd:element name="voie" substitutionGroup="path"/>
     <xsd:element name="ville" substitutionGroup="city"/>
     <xsd:element name="pays" substitutionGroup="country"/>
     <xsd:element name="naissance" substitutionGroup="birth"/>
