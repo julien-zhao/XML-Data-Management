@@ -119,11 +119,12 @@
     </xsd:simpleType>
 
     <xsd:element name="temps" type="TempsType"/>
- 
-    <xsd:element name="lieu" substitutionGroup="ville" />
+    <xsd:element name="lieu" substitutionGroup="ville"/>
+    <xsd:element name="personnage" substitutionGroup="personne"/>
     <xsd:complexType name="SynopsisType" mixed="true">
         <xsd:sequence>
-            <xsd:group ref="PersonGroup"/>
+            <xsd:group ref="PersonGroup" minOccurs="0"/>
+            <xsd:element ref="personne" minOccurs="0" />
             <xsd:element ref="ville" minOccurs="0" />
         </xsd:sequence>
     </xsd:complexType>

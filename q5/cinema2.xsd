@@ -5,30 +5,12 @@
     <!-- Inclusion du fichier cinema.xsd -->
     <xsd:include schemaLocation="..\q4\cinema.xsd"/>
 
-    <!-- Définition de CinemaType -->
-    <xsd:complexType name="CinemaType">
-        <xsd:sequence>
-            <xsd:element ref="film" minOccurs="1" maxOccurs="unbounded"/>
-            <xsd:element ref="salle" minOccurs="1" maxOccurs="unbounded"/>
-            <xsd:element ref="seance" minOccurs="1" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
 
-    <!-- Définition de SeanceType -->
-    <xsd:complexType name="SeanceType">
-        <xsd:sequence>
-            <xsd:element ref="film"/>
-            <xsd:element name="sortie">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="an" type="xsd:gYear"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
-        </xsd:sequence>
-        <xsd:attribute ref="horaire" use="required"/>
-    </xsd:complexType>
 
+ 
+    
+    
+    
     <!-- Définition de l'élément cinéma -->
     <xsd:element name="cinema2" type="CinemaType">
         <!-- Définition de la clé pour les films -->

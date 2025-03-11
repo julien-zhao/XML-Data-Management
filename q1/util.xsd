@@ -153,6 +153,7 @@
     <xsd:element name="path" type="pathType"/>
     <xsd:element name="code" type="codeType"/>
     <xsd:element name="address" type="addressType"/>
+    
   <xsd:complexType name="addressType">
     <xsd:sequence>
       <xsd:element ref="number"/>

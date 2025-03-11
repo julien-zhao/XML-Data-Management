@@ -5,7 +5,6 @@
   <!-- 包含CNCFilm.xsd -->
   <xsd:include schemaLocation="..\q3\CNCFilm.xsd"/>
 
-
   <!-- ================= 新类型定义 ================= -->
   <!-- 影厅编号类型 (1-40) -->
   <xsd:simpleType name="NumType">

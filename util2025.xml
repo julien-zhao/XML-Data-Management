@@ -18,10 +18,43 @@
     <country>Togo</country>
     <country>ToGo</country>
     <country>États-unis</country>
+    
     <code>96321</code>
     <code>97100</code>
     <code>78900</code>
     <code>0099</code>
+    
+    <city>Paris</city>
+    <city>Krung Thep Mahanakhon Amon Rattanakosin Mahinthara Ayuthaya Mahadilok Phop Noppharat Ratchathani Burirom Udomratchaniwet Mahasathan Amon Piman Awatan Sathit Sakkathattiya Witsanukam Prasit</city>
+    <city>Taumatawhakatangihangakoauuotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu</city>
+    <city>Saint Faust du bas</city>
+    <city>Saint Faust du haut</city>
+    <city>Villefranche</city>
+    
+    <lastName>Sartre</lastName>
+    <lastName>Lehane</lastName>
+    <lastName>Pourroy de L'Auberivière de Quinsonas-Oudinot de Reggio</lastName>
+    <lastName>Bertrand de Beauvoir</lastName>
+    
+    <firstName>Li Ming</firstName>
+    <firstName>Jean-Paul</firstName>
+    <firstName>Maélys</firstName>
+    <firstName>Napu AmoHalla Ona Ona</firstName>
+    <firstName>Aneka Vehi Vehi Ona</firstName>
+    <firstName>Hivea Nena Vava Keho</firstName>
+    <firstName>Onka Kahe HeaLeka Ea Ona</firstName>
+    <firstName>Ney Nana Nia Keko</firstName>
+    <firstName>Oa Oga Vanao</firstName>
+    <firstName>Simone-Lucie-Ernestine-Marie</firstName> 
+    
+    
+    <address>
+        <number>1</number>
+        <path>impasse de la Foire</path>
+        <code>97110</code>
+        <city>Pointe-à-Pitre</city>
+        <country>Guadeloupe</country>
+    </address>
     <!-- A completer par les étudiants pour valider les autres types -->
 </test>
 <!-- Push Test -->
