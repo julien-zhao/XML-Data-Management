@@ -36,6 +36,12 @@
     <lastName>Pourroy de L'Auberivière de Quinsonas-Oudinot de Reggio</lastName>
     <lastName>Bertrand de Beauvoir</lastName>
     
+    <!-- https://emilypost.com/advice/mens-names-and-titles -->
+    <lastName>Sr.Smith</lastName>
+    <lastName>Jr.Smith</lastName>
+    <lastName>Smith III</lastName>
+    <lastName>Mrs. John M. Smith Jr.</lastName>
+
     <firstName>Li Ming</firstName>
     <firstName>Jean-Paul</firstName>
     <firstName>Maélys</firstName>
@@ -47,7 +53,7 @@
     <firstName>Oa Oga Vanao</firstName>
     <firstName>Simone-Lucie-Ernestine-Marie</firstName> 
     
-    
+  
     <address>
         <number>1</number>
         <path>impasse de la Foire</path>
@@ -55,6 +61,31 @@
         <city>Pointe-à-Pitre</city>
         <country>Guadeloupe</country>
     </address>
+    
     <!-- A completer par les étudiants pour valider les autres types -->
+    <address>
+        <number>12</number>
+        <path>rue de la Liberté</path>
+        <code>01000</code>
+        <city>BOURG EN BRESSE</city>
+        <country>France</country>
+    </address>
+    
+    <address>
+            <number>45</number>
+            <path>avenue des Roses</path>
+            <code>98890</code>
+            <city>PAITA</city> 
+            <country>FRANCE</country>
+    </address>
+    
+    <address>
+            <number>7</number>
+            <path>impasse du Château</path>
+            <code>01</code>
+            <city>Ain</city>
+            <country>France</country>
+    </address>
+    
 </test>
 <!-- Push Test -->
