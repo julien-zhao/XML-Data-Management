@@ -32,7 +32,7 @@
             <xsd:element ref="mois"/>
             <xsd:element ref="an"/>
         </xsd:all>
-        <xsd:attribute name="pays"/>
+        <xsd:attribute ref="pays"/>
     </xsd:complexType>
     <xsd:element name="jour" type="xsd:gDay"/>
     <xsd:element name="mois" type="xsd:gMonth"/>
@@ -41,7 +41,7 @@
     
     
     
-    <xsd:element name="acteur" substitutionGroup ="person"/>   
+    <xsd:element name="acteur" type="ActeurType" substitutionGroup ="person"/>   
     <xsd:complexType name="ActeursType">
         <xsd:sequence>
             <xsd:element ref="acteur" maxOccurs="unbounded"/>
@@ -120,7 +120,7 @@
 
     <xsd:element name="temps" type="TempsType"/>
     <xsd:element name="lieu" substitutionGroup="ville"/>
-    <xsd:element name="personnage" substitutionGroup="personne"/>
+    <xsd:element name="personnage" type="PersonnageType" substitutionGroup="personne"/>
     <xsd:complexType name="SynopsisType" mixed="true">
         <xsd:sequence>
             <xsd:group ref="PersonGroup" minOccurs="0"/>
@@ -128,6 +128,8 @@
             <xsd:element ref="ville" minOccurs="0" />
         </xsd:sequence>
     </xsd:complexType>
+    
+
     
     
 

@@ -7,19 +7,22 @@
 <mois>--03</mois>
 <an>2015</an>
 </sortie>
+
 <realisateur>
 <prenom>Tim</prenom>
 <nom>Burton</nom>
 </realisateur>
+
 <acteurs>
 <acteur>
 <prenom>Amy</prenom>
 <nom>Adams</nom>
 <personnage profession="Painter">
     <prenom>Margaret</prenom>
-      <nom>Keane</nom>
+    <nom>Keane</nom>
 </personnage>
 </acteur>
+
 <acteur>
 <prenom>Christoph</prenom>
 <nom>Waltz</nom>
@@ -28,6 +31,7 @@
       <nom>Keane</nom>
 </personnage>
 </acteur>
+
 <acteur>
 <prenom>Jon</prenom>
 <nom>Polito</nom>
@@ -36,6 +40,7 @@
     <nom>Banducci</nom>
 </personnage>
 </acteur>
+
 <acteur>
 <prenom>Jason</prenom>
 <nom>Schwartzman</nom>
@@ -43,6 +48,7 @@
     <prenom>Ruben</prenom>
 </personnage>
 </acteur>
+
 <acteur>
 <prenom>Terence</prenom>
 <nom>Stamp</nom>
@@ -52,8 +58,11 @@
 </personnage>
 </acteur>
 </acteurs>
+
+
 <genre autre-genre="dramatique">film biographique</genre>
-<durée heure="01" minutes="46"/>
+<dur¨¦e heure="01" minutes="46"/>
+
 <synopsis>
 <titre>Big Eyes</titre>
 raconte la scandaleuse histoire vraie de lâ€™une des plus grandes impostures de lâ€™histoire de lâ€™art. Le

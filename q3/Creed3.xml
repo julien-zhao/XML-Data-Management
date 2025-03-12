@@ -1,5 +1,5 @@
 <film xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CNCFilm.xsd">
-<titre sous-titre="La rel√®ve de Rocky Balboa">Creed 3</titre>
+<titre sous-titre="La rel®®ve de Rocky Balboa">Creed 3</titre>
 <sortie pays="Etats-Unis">
 <jour>---03</jour>
 <mois>--03</mois>
@@ -42,7 +42,7 @@
 </acteur>
 </acteurs>
 <genre autre-genre="sport">drame</genre>
-<durÈe heure="02" minutes="00"/>
+<dur®¶e heure="02" minutes="00"/>
 <synopsis>
 Neuvi√®me film de la s√©rie <titre>Rocky</titre>,
 il fait suite √† <film>Creed 2</film> de <realisateur>
