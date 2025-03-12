@@ -52,7 +52,7 @@
   <xsd:simpleType name="nameType">
     <xsd:restriction base="xsd:normalizedString">
       <xsd:maxLength value="80"/>
-       <xsd:pattern value="\p{Lu}[\p{Ll}]*([\-\s',.]\p{Lu}?[\p{L}]*)*"/>
+       <xsd:pattern value="\p{Lu}[\p{Ll}]*([\-\s',.]\p{Lu}?[\p{L}\p{N}]*)*"/>
                 <!--BackUp \p{Lu}[\p{Ll}]*([\-\s']\p{Lu}?[\p{Ll}]*)* -->
     </xsd:restriction>
   </xsd:simpleType>
