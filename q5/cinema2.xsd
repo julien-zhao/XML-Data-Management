@@ -5,10 +5,6 @@
     <!-- Inclusion du fichier cinema.xsd -->
     <xsd:include schemaLocation="..\q4\cinema.xsd"/>
 
-
-
- 
-    
     
     
     <!-- Définition de l'élément cinéma -->

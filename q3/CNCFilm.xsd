@@ -62,6 +62,7 @@
                         <xsd:element ref="realisateur" minOccurs="0"/>
                         <xsd:element ref="acteur" minOccurs="0"/>
                         <xsd:element ref="prenom" minOccurs="0"/>
+                        <xsd:element ref="nom" minOccurs="0"/>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
@@ -79,7 +80,8 @@
                         <xsd:element ref="surnom" minOccurs="0" maxOccurs="1"/>
                         <xsd:element ref="fonction" minOccurs="0" maxOccurs="1"/>
                     </xsd:sequence>
-                </xsd:extension>
+                    <xsd:attribute name="profession" type="xsd:string" use="optional"/> <!--not sure--> 
+                </xsd:extension>          
             </xsd:complexContent>
         </xsd:complexType>
 
@@ -91,12 +93,14 @@
                 <xsd:sequence>
                         <xsd:element ref="surnom" minOccurs="0" maxOccurs="1"/>
                         <xsd:element ref="fonction" minOccurs="0" maxOccurs="1"/>
+                        <xsd:element ref="personnage" minOccurs="0" maxOccurs="1"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
     
     <xsd:attribute name="sous-titre" type="TitreType"/>
+    <xsd:attribute name="profession" type="xsd:string"/> <!--not sure-->
     <xsd:element name="peintre" type="personType" substitutionGroup="personne"/>
     <xsd:element name="surnom" type="xsd:string" />
     <xsd:element name="fonction" type="xsd:string"/>
