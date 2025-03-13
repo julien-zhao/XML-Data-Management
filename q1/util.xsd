@@ -13,8 +13,7 @@
 </xsd:annotation>
   <xsd:simpleType name="countryType">
     <xsd:restriction base="xsd:normalizedString">
-      <xsd:pattern value="\p{Lu}\p{L}+([\-\s']\p{Lu}?\p{L}+)*"/> 
-               <!--BackUp \p{Lu}\p{Ll}+([\-\s']\p{Lu}?\p{Ll}+)*"/ --> 
+      <xsd:pattern value="\p{Lu}\p{L}+([\-\s']\p{Lu}?\p{L}+){0,4}"/> 
     </xsd:restriction>
   </xsd:simpleType>
   
@@ -35,8 +34,7 @@
     <xsd:restriction base="xsd:normalizedString">
       <xsd:minLength value="1"/>
       <xsd:maxLength value="168"/>
-      <xsd:pattern value="\p{Lu}[\p{L}]*([\-\s']\p{Lu}?[\p{L}]*)*"/>
-               <!--BackUp \p{Lu}[\p{Ll}]*([\-\s']\p{Lu}?[\p{Ll}]*)* --> 
+      <xsd:pattern value="\p{Lu}[\p{L}]+([\-\s']\p{Lu}?[\p{L}]+){0,3}"/>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -52,8 +50,7 @@
   <xsd:simpleType name="nameType">
     <xsd:restriction base="xsd:normalizedString">
       <xsd:maxLength value="80"/>
-       <xsd:pattern value="\p{Lu}[\p{Ll}]*([\-\s',.]\p{Lu}?[\p{L}\p{N}]*)*"/>
-                <!--BackUp \p{Lu}[\p{Ll}]*([\-\s']\p{Lu}?[\p{Ll}]*)* -->
+       <xsd:pattern value="\p{Lu}[\p{Ll}]+([\-\s',.]\p{Lu}?[\p{L}\p{N}\s.]+){0,3}"/>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -69,7 +66,7 @@
   <xsd:simpleType name="firstNameType">
     <xsd:restriction base="xsd:token">
       <xsd:maxLength value="200"/>
-        <xsd:pattern value="\p{Lu}[\p{L}]*([\-\s']\p{Lu}?[\p{L}]*)*"/>
+        <xsd:pattern value="\p{Lu}[\p{L}]+([\-\s]\p{Lu}?[\p{L}]+){0,4}"/>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -89,7 +86,7 @@
     <xsd:restriction base="xsd:unsignedInt">
         <xsd:minInclusive value="01000"/>
         <xsd:maxInclusive value="98899"/>
-      <xsd:pattern value="[0-8][1-9]\d{3}|9[0-5]\d{3}|97[1-6]\d{2}|98[6-8]\d{2}"/>
+      <xsd:pattern value="[1-9][0-0]\d{3}|[0-8][1-9]\d{3}|9[0-5]\d{3}|97[0-6]\d{2}|98[6-8]\d{2}"/>
     </xsd:restriction>
   </xsd:simpleType>
   

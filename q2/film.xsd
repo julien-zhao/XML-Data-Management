@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema version="1.0" 
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
             elementFormDefault="qualified">
             <xsd:include schemaLocation="..\q1\Personne.xsd"/>
            
@@ -103,31 +102,22 @@
     </xsd:attributeGroup>
     
     
-   
-    <xsd:attribute name="heure" type="heureType"/>
-    <xsd:simpleType name="heureType">
-        <xsd:restriction base="xsd:minuteType">
-           <xsd:maxInclusive value="30"/>
-        </xsd:restriction>
-    </xsd:simpleType>
     
-    
-    
-    
-    <xsd:attribute name="minutes" type="minuteType"/>  
-    <xsd:simpleType name="minuteType">
+    <xsd:attribute name="minutes" type="MinuteType"/>  
+    <xsd:simpleType name="MinuteType">
         <xsd:restriction base="xsd:unsignedByte">
-            <!-- MinuteType réduit le domaine de valeurs compris entre 0 et 60, et exprime que les
-                 minutes se  représentent par 01, 11, 45, 59… Prendre le type de base le plus
-                 approprié.  
-            -->
             <xsd:maxInclusive value="60"/>
             <xsd:minInclusive value="00"/>
             <xsd:pattern value="\d{2}"/>
         </xsd:restriction>
     </xsd:simpleType>
     
-    
+    <xsd:attribute name="heure" type="HeureType"/>
+    <xsd:simpleType name="HeureType">
+        <xsd:restriction base="MinuteType">
+           <xsd:maxInclusive value="30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
     
     
     
@@ -139,7 +129,7 @@
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
             <xsd:element ref="titre" minOccurs="0"/>
             <xsd:element name="personnage" type="personType" minOccurs="0"/>
-            <xsd:element name="peintre" type="ActeurType" minOccurs="0"/>
+            <xsd:element name="peintre" type="personType" minOccurs="0"/>
             <xsd:element ref="realisateur" minOccurs="0"/>
             <xsd:element ref="acteur" minOccurs="0"/>
             <xsd:element name="lieu" minOccurs="0" />
@@ -148,7 +138,7 @@
         </xsd:choice>
     </xsd:complexType>
     
-
+   
     <xsd:element name="acteur" type="ActeurType"/>
     <xsd:element name="titre" type="TitreType"/>
     <xsd:element name="sortie" type="SortieType"/>
@@ -160,7 +150,7 @@
 
     <!-- Définition de FilmType -->
     <xsd:complexType name="FilmType">
-        <xsd:sequence>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
             <xsd:element ref="titre" minOccurs="1" maxOccurs="2"/>
             <xsd:element ref="sortie" minOccurs="1" maxOccurs="2"/>
             <xsd:element ref="realisateur" minOccurs="1" maxOccurs="10"/>
@@ -168,7 +158,7 @@
             <xsd:element ref="genre"/>
             <xsd:element ref="temps"/>
             <xsd:element ref="synopsis"/>
-        </xsd:sequence>
+        </xsd:choice>
     </xsd:complexType>
     
     

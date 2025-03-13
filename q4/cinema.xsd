@@ -1,80 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             elementFormDefault="qualified">
-            <xsd:include schemaLocation="..\q3\CNCFilm.xsd"/>
-            
+    <xsd:include schemaLocation="..\q3\CNCFilm.xsd"/>
+
+    <xsd:simpleType name="NumType">
+        <xsd:restriction base="xsd:unsignedByte">
+            <xsd:minInclusive value="1"/>
+            <xsd:maxInclusive value="40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="PlaceType">
+        <xsd:restriction base="xsd:unsignedShort">
+            <xsd:minInclusive value="25"/>
+            <xsd:maxInclusive value="1500"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="HoraireType">
+        <xsd:list itemType="xsd:time"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="RemarqueType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Réservation conseillée"/>
+            <xsd:enumeration value="Interdit au moins de 16 ans"/>
+            <xsd:enumeration value="Attention déconseillé pour les personnes sensibles"/>
+            <xsd:enumeration value="Version française"/>
+            <xsd:enumeration value="Version originale sous-titrée"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="remarque" type="RemarqueType"/>
+    <xsd:attribute name="horaire" type="HoraireType"/>
+
+    <xsd:complexType name="SeanceType">
+        <xsd:sequence>
+            <xsd:element ref="film"/>
+            <!-- <xsd:element name="film" type="xsd:string"/> si on veut enlever les erreurs de film comme <film>Big Eyes</film> --> 
+            <xsd:element ref="remarque" minOccurs="0" maxOccurs="2"/>
+        </xsd:sequence>
+        <xsd:attribute name="horaire" use="required"/>
+    </xsd:complexType>
 
 
-  <xsd:simpleType name="NumType">
-    <xsd:restriction base="xsd:unsignedByte">
-      <xsd:minInclusive value="1"/>
-      <xsd:maxInclusive value="40"/>
-    </xsd:restriction>
-  </xsd:simpleType>
+    <xsd:attribute name="num" type="NumType"/>
+    <xsd:attribute name="place" type="PlaceType"/>
+
+    <xsd:attributeGroup name="SalleGroup">
+        <xsd:attribute ref="num" use="required"/>
+        <xsd:attribute ref="place" use="required"/>
+    </xsd:attributeGroup>
 
 
-  <xsd:simpleType name="PlaceType">
-    <xsd:restriction base="xsd:unsignedShort">
-      <xsd:minInclusive value="25"/>
-      <xsd:maxInclusive value="1500"/>
-    </xsd:restriction>
-  </xsd:simpleType>
+    <xsd:element name="seance" type="SeanceType"/>
+    <xsd:element name="salle" type="SalleType"/>
 
-  <xsd:simpleType name="HoraireType">
-    <xsd:list itemType="xsd:time"/>
-  </xsd:simpleType>
-
-
-  <xsd:simpleType name="RemarqueType">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="Réservation conseillée"/>
-      <xsd:enumeration value="Interdit au moins de 16 ans"/>
-      <xsd:enumeration value="Attention déconseillé pour les personnes sensibles"/>
-      <xsd:enumeration value="Version française"/>
-      <xsd:enumeration value="Version originale sous-titrée"/>
-    </xsd:restriction>
-  </xsd:simpleType>
-
-  <!-- Définition de SeanceType -->
-  <xsd:element name="remarque" type="RemarqueType"/>
-  <xsd:attribute name="horaire" type="HoraireType"/>
-  <xsd:complexType name="SeanceType">
-    <xsd:sequence>
-      <xsd:element ref="film" type="TitreType"/> 
-      <!--<xsd:element name="film" type="xsd:string"/> si on veux enlever les erreurs de film comme<film>Big Eyes</film>--> 
-      <xsd:element ref="remarque" minOccurs="0" maxOccurs="2"/>
-    </xsd:sequence>
-    <xsd:attribute name="horaire" use="required"/>
-  </xsd:complexType>
-
-  <xsd:attribute name="num" type="NumType"/>
-  <xsd:attribute name="place" type="PlaceType"/>
-  
-  <xsd:attributeGroup name="SalleGroup">
-    <xsd:attribute ref="num" use="required"/>
-    <xsd:attribute ref="place" use="required"/>
-  </xsd:attributeGroup>
+    <xsd:complexType name="SalleType">
+        <xsd:sequence>
+            <xsd:element ref="seance" maxOccurs="7"/>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="SalleGroup"/>
+    </xsd:complexType>
 
 
-  <xsd:element name="seance" type="SeanceType"/>
-  <xsd:element name="salle" type="SalleType"/>
-  
-  <xsd:complexType name="SalleType">
-    <xsd:sequence>
-      <xsd:element ref="seance" maxOccurs="7"/>
-    </xsd:sequence>
-    <xsd:attributeGroup ref="SalleGroup"/>
-  </xsd:complexType>
+    <xsd:element name="cinema" type="CinemaType"/>
 
-  <xsd:complexType name="CinemaType">
-    <xsd:sequence>
-      <xsd:element name="nom" type="xsd:string"/>
-      <xsd:element ref="adresse"/> 
-      <xsd:element ref="salle" minOccurs="1" maxOccurs="40"/>
-      <xsd:element ref="film" minOccurs="1" maxOccurs="200"/>  
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:element name="cinema" type="CinemaType"/>
+    <xsd:complexType name="CinemaType">
+        <xsd:sequence>
+            <xsd:element name="nom" type="xsd:string"/>
+            <xsd:element ref="adresse"/> 
+            <xsd:element ref="salle" minOccurs="1" maxOccurs="40"/>
+            <xsd:element ref="film" minOccurs="1" maxOccurs="200"/>  
+        </xsd:sequence>
+    </xsd:complexType>
 
 </xsd:schema>
