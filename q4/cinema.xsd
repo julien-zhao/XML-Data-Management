@@ -2,6 +2,7 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             elementFormDefault="qualified">
             <xsd:include schemaLocation="..\q3\CNCFilm.xsd"/>
+            
 
 
   <xsd:simpleType name="NumType">
@@ -39,7 +40,7 @@
   <xsd:attribute name="horaire" type="HoraireType"/>
   <xsd:complexType name="SeanceType">
     <xsd:sequence>
-      <xsd:element ref="film"/> 
+      <xsd:element ref="film" type="TitreType"/> 
       <!--<xsd:element name="film" type="xsd:string"/> si on veux enlever les erreurs de film comme<film>Big Eyes</film>--> 
       <xsd:element ref="remarque" minOccurs="0" maxOccurs="2"/>
     </xsd:sequence>

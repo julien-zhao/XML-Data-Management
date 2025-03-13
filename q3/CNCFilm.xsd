@@ -12,15 +12,15 @@
         <xsd:complexType name="FilmType">
             <xsd:complexContent>
                 <xsd:extension base="FilmType">
-                    <xsd:attribute ref="sous-titre" use="optional"/>
+                    <xsd:attribute name="titre" type="TitreType"/>
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
-    </xsd:redefine>
+
     
     
 
-    <xsd:redefine schemaLocation="..\q2\film.xsd">
+
         <xsd:simpleType name="TitreType">
             <xsd:restriction base="TitreType"> <!-- Référence au type redéfini lui-même -->
                 <xsd:minLength value="2"/>
@@ -28,12 +28,11 @@
                 <xsd:pattern value="([\p{N}\p{Lu}]|L')[\p{L}\p{N}',.]{0,14}(\s)?((\s|[-':\p{P}])[\p{L}\p{N}:.',\s]{1,15}){0,29}[?!]?"/>
             </xsd:restriction>
         </xsd:simpleType>
-    </xsd:redefine>
+
 
     
 
-    <!-- Redéfinition de ActeursType -->
-    <xsd:redefine schemaLocation="..\q2\film.xsd">
+
         <xsd:complexType name="ActeursType">
             <xsd:complexContent>
                 <xsd:extension base="ActeursType">
@@ -43,53 +42,47 @@
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
-    </xsd:redefine>
 
 
 
 
 
-    <xsd:redefine schemaLocation="..\q2\film.xsd">
         <!-- Redéfinition de SynopsisType -->
         <xsd:complexType name="SynopsisType" mixed="true">
             <xsd:complexContent>
                 <xsd:extension base="SynopsisType"> <!-- Référence au type redéfini lui-même -->
-                    <xsd:sequence>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
                         <xsd:element ref="titre" minOccurs="0"/>
+                        <xsd:element name="date" type="xsd:gYear"/>
+                        <xsd:element name="film" type="TitreType" minOccurs="0"/>
                         <xsd:element ref="lieu" minOccurs="0"/>
+                        <xsd:element ref="city" minOccurs="0"/>
                         <xsd:element ref="personnage" minOccurs="0"/>
                         <xsd:element ref="peintre" minOccurs="0"/>
                         <xsd:element ref="realisateur" minOccurs="0"/>
                         <xsd:element ref="acteur" minOccurs="0"/>
                         <xsd:element ref="prenom" minOccurs="0"/>
                         <xsd:element ref="nom" minOccurs="0"/>
-                    </xsd:sequence>
+                    </xsd:choice>
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
-    </xsd:redefine>
 
 
 
 
+        <xsd:group name="PersonGroup">
+            <xsd:sequence>
+                <xsd:element ref="prenom" minOccurs="1" maxOccurs="4"/>
+                <xsd:element ref="nom" minOccurs="0" maxOccurs="2"/>
+            </xsd:sequence>
+        </xsd:group>
 
-        <xsd:complexType name="PersonnageType">
-            <xsd:complexContent>
-                <xsd:extension base="personType">
-                    <xsd:sequence>
-                        <xsd:element ref="surnom" minOccurs="0" maxOccurs="1"/>
-                        <xsd:element ref="fonction" minOccurs="0" maxOccurs="1"/>
-                    </xsd:sequence>
-                    <xsd:attribute name="profession" type="xsd:string" use="optional"/> <!--not sure--> 
-                </xsd:extension>          
-            </xsd:complexContent>
-        </xsd:complexType>
 
- 
-        
+  
     <xsd:complexType name="ActeurType">
         <xsd:complexContent>
-            <xsd:extension base="personType"> <!-- Étend personType de Personne.xsd -->
+            <xsd:extension base="ActeurType"> <!-- Étend personType de Personne.xsd -->
                 <xsd:sequence>
                         <xsd:element ref="surnom" minOccurs="0" maxOccurs="1"/>
                         <xsd:element ref="fonction" minOccurs="0" maxOccurs="1"/>
@@ -99,9 +92,42 @@
         </xsd:complexContent>
     </xsd:complexType>
     
-    <xsd:attribute name="sous-titre" type="TitreType"/>
+    </xsd:redefine>
+
+
+
+        <xsd:attribute name="sous-titre" type="TitreType"/> 
+        <xsd:complexType name="complexTitreType">
+            <xsd:simpleContent>
+                <xsd:extension base="TitreType">
+                    <xsd:attribute ref="sous-titre" use="optional"/> 
+                </xsd:extension>          
+            </xsd:simpleContent>
+        </xsd:complexType>
+
+
+
+        <xsd:complexType name="PersonnageType">
+            <xsd:complexContent>
+                <xsd:extension base="personType">
+                    <xsd:choice>           
+                        
+                        <xsd:element ref="surnom" minOccurs="0" maxOccurs="1"/>
+                    </xsd:choice>
+                    <xsd:attribute ref="profession"  use="optional"/> 
+                </xsd:extension>          
+            </xsd:complexContent>
+        </xsd:complexType>
+
+ 
+
+    
+    
+    
+ 
+    <xsd:element name="personnage" type="PersonnageType" substitutionGroup="personne"/>
     <xsd:attribute name="profession" type="xsd:string"/> <!--not sure-->
-    <xsd:element name="peintre" type="personType" substitutionGroup="personne"/>
+    <xsd:element name="peintre" type="PersonnageType" substitutionGroup="personne"/>
     <xsd:element name="surnom" type="xsd:string" />
     <xsd:element name="fonction" type="xsd:string"/>
 </xsd:schema>

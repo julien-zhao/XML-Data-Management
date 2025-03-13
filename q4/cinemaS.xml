@@ -9,17 +9,17 @@
     <salle num="1" place="320">
         <seance horaire="14:15:00.000 17:15:00.000">
             <film>Big Eyes</film>
-            <remarque>R¨¦servation conseill¨¦e</remarque>
+            <remarque>Réservation conseillée</remarque>
         </seance>
     </salle>
     <salle num="3" place="320">
         <seance horaire="14:15:00.000 17:15:00.000">
             <film>Big Eyes</film>
-            <remarque>R¨¦servation conseill¨¦e</remarque>
+            <remarque>Réservation conseillée</remarque>
         </seance>
         <seance horaire="19:30:00.000 22:15:00.000">
             <film>Big Eyes</film>
-            <remarque>R¨¦servation conseill¨¦e</remarque>
+            <remarque>Réservation conseillée</remarque>
         </seance>
     </salle>
     <salle num="2" place="120">
@@ -30,7 +30,7 @@
     <salle num="4" place="250">
         <seance horaire="14:00:00.000 17:15:00.000 20:10:00.000">
             <film>Creed 3</film>
-            <remarque>Attention d¨¦conseill¨¦ pour les personnes sensibles</remarque>
+            <remarque>Attention déconseillé pour les personnes sensibles</remarque>
         </seance>
     </salle>
     
@@ -66,8 +66,8 @@
                 <nom>Galifianakis</nom>
             </acteur>
         </acteurs>
-        <genre autre-genre="dramatique">com¨¦die</genre>
-        <dur¨¦e heure="02" minutes="00"/>
+        <genre autre-genre="dramatique">comédie</genre>
+        <durée heure="02" minutes="00"/>
         <synopsis>
             Ã€ l'Ã©poque oÃ¹ il incarnait un cÃ©lÃ¨bre super-hÃ©ros,
 
@@ -136,7 +136,7 @@
             </acteur>
         </acteurs>
         <genre autre-genre="dramatique">film biographique</genre>
-        <dur¨¦e heure="01" minutes="46"/>
+        <durée heure="01" minutes="46"/>
         <synopsis>
             <titre>Big Eyes</titre>
             raconte la scandaleuse histoire vraie de lâ€™une des plus grandes impostures de lâ€™histoire de lâ€™art. Le
@@ -206,7 +206,7 @@
             </acteur>
         </acteurs>
         <genre autre-genre="sport">drame</genre>
-        <dur¨¦e heure="02" minutes="00"/>
+        <durée heure="02" minutes="00"/>
         <synopsis>
             NeuviÃ¨me film de la sÃ©rie <titre>Rocky</titre>,
             il fait suite Ã  <film>Creed 2</film> de <realisateur>

@@ -41,12 +41,15 @@
     
     
     
-    <xsd:element name="acteur" type="ActeurType" substitutionGroup ="person"/>   
+      
     <xsd:complexType name="ActeursType">
         <xsd:sequence>
             <xsd:element ref="acteur" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
+    
+    
+    
     
   
         
@@ -99,12 +102,16 @@
         <xsd:attribute ref="minutes" use="required"/>
     </xsd:attributeGroup>
     
+    
+   
     <xsd:attribute name="heure" type="heureType"/>
     <xsd:simpleType name="heureType">
-        <xsd:restriction base="xsd:unsignedByte">
-           <xsd:pattern value="[0-2]\p{Nd}|30"/>
+        <xsd:restriction base="xsd:minuteType">
+           <xsd:maxInclusive value="30"/>
         </xsd:restriction>
     </xsd:simpleType>
+    
+    
     
     
     <xsd:attribute name="minutes" type="minuteType"/>  
@@ -114,28 +121,38 @@
                  minutes se  représentent par 01, 11, 45, 59… Prendre le type de base le plus
                  approprié.  
             -->
-            <xsd:pattern value="[0-5]\p{Nd}|60"/>
+            <xsd:maxInclusive value="60"/>
+            <xsd:minInclusive value="00"/>
+            <xsd:pattern value="\d{2}"/>
         </xsd:restriction>
     </xsd:simpleType>
+    
+    
+    
+    
+    
+    
 
     <xsd:element name="temps" type="TempsType"/>
-    <xsd:element name="lieu" substitutionGroup="ville"/>
-    <xsd:element name="personnage" type="PersonnageType" substitutionGroup="personne"/>
+    
     <xsd:complexType name="SynopsisType" mixed="true">
-        <xsd:sequence>
-            <xsd:group ref="PersonGroup" minOccurs="0"/>
-            <xsd:element ref="personne" minOccurs="0" />
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="titre" minOccurs="0"/>
+            <xsd:element name="personnage" type="personType" minOccurs="0"/>
+            <xsd:element name="peintre" type="ActeurType" minOccurs="0"/>
+            <xsd:element ref="realisateur" minOccurs="0"/>
+            <xsd:element ref="acteur" minOccurs="0"/>
+            <xsd:element name="lieu" minOccurs="0" />
             <xsd:element ref="ville" minOccurs="0" />
-        </xsd:sequence>
+            <xsd:group ref="PersonGroup" minOccurs="0"/>
+        </xsd:choice>
     </xsd:complexType>
     
 
-    
-    
-
+    <xsd:element name="acteur" type="ActeurType"/>
     <xsd:element name="titre" type="TitreType"/>
     <xsd:element name="sortie" type="SortieType"/>
-    <xsd:element name="realisateur" type="personType"/>
+    <xsd:element name="realisateur" type="personType" substitutionGroup="personne"/>
     <xsd:element name="acteurs" type="ActeursType"/>
     <xsd:element name="genre" type="GenreType"/>
     <xsd:element name="durée" substitutionGroup="temps"/>
@@ -153,5 +170,20 @@
             <xsd:element ref="synopsis"/>
         </xsd:sequence>
     </xsd:complexType>
+    
+    
+    
+    
+    
+    
+    <xsd:complexType name="ActeurType">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="prenom" minOccurs="0" maxOccurs="4"/>
+            <xsd:element ref="nom" minOccurs="1" maxOccurs="2"/>
+        </xsd:choice>
+    </xsd:complexType>
+    
+    
+ 
     <xsd:element name="film" type="FilmType"/>
 </xsd:schema>
